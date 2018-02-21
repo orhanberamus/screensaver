@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+  <html>
+  <script>window.$ = window.jQuery = require('jquery');
+  </script>
+  <style>
+    body {
+      overflow-x: hidden;
+      overflow-y: hidden;
+    }
+  </style>
+
+
+<script src="mainsnow.js"></script>
+<script src="Snowflake.js"></script>
+
+</head>
+<body >
+<canvas id="myCanvas" width="2000" height="1200" style="border:1px solid #d3d3d3;">
+</body>
+<script>
+var ipc = require('electron').ipcRenderer;
+document.getElementById("myCanvas").addEventListener('click', function(){
+    ipc.once('actionReply', function(event, response){
+        processResponse(response);
+    })
+    ipc.send('closeapp', 'someData');
+});</script>
+  </html>
